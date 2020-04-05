@@ -6,7 +6,7 @@ import ItemMapList from './components/js/ItemMapList';
 import Header from './components/js/Header';
 import SelectedBox from './components/js/SelectedBox';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
 class App extends React.Component {
@@ -128,64 +128,68 @@ class App extends React.Component {
 	render() {
 		return (
 			<Router>
-				<Switch>
-					{
-						this.state.acceptLocationInformation &&
-						<Route path="/masktest0330/list" component={() => 
-							<>
-								<Header 
-									geo={this.state.geo}
-									distance={this.state.distance}
-									address={this.state.address}
-									getGeolocation={this.getGeolocation}
-									getAddressToGeolocation={this.getAddressToGeolocation}
-									getDistanceToUser={this.getDistanceToUser}
-								/>
-								<ItemList
-									geo={this.state.geo}
-									items={this.state.items}
-									getDistanceFromLatLonInKm={this.getDistanceFromLatLonInKm}
-									handleClick={this.handleClick} />
-									{this.state.selectedItem && <SelectedBox
-																	geo={this.state.geo}
-																	selectedItem={this.state.selectedItem}
-																	getDistanceFromLatLonInKm={this.getDistanceFromLatLonInKm}
-																	handleRemove={this.handleRemove} />
-									}
-							</>
-						} 
-						/>
-					}
-
-					{
-						this.state.acceptLocationInformation &&
-						<Route path="/masktest0330/map" component={() => 
-							<>
-								<Header 
-									geo={this.state.geo}
-									distance={this.state.distance}
-									address={this.state.address}
-									getGeolocation={this.getGeolocation}
-									getAddressToGeolocation={this.getAddressToGeolocation}
-									getDistanceToUser={this.getDistanceToUser}
-								/>
-								<ItemMapList
-									geo={this.state.geo}
-									items={this.state.items}
-									getDistanceFromLatLonInKm={this.getDistanceFromLatLonInKm}
+				<BrowserRouter basename={process.env.PUBLIC_URL} >
+					<Switch>
+						{
+							this.state.acceptLocationInformation &&
+							<Route path="/list" component={() => 
+								<>
+									<Header 
+										geo={this.state.geo}
+										distance={this.state.distance}
+										address={this.state.address}
+										getGeolocation={this.getGeolocation}
+										getAddressToGeolocation={this.getAddressToGeolocation}
+										getDistanceToUser={this.getDistanceToUser}
 									/>
-							</>
+									<ItemList
+										geo={this.state.geo}
+										items={this.state.items}
+										getDistanceFromLatLonInKm={this.getDistanceFromLatLonInKm}
+										handleClick={this.handleClick} />
+										{this.state.selectedItem && <SelectedBox
+																		geo={this.state.geo}
+																		selectedItem={this.state.selectedItem}
+																		getDistanceFromLatLonInKm={this.getDistanceFromLatLonInKm}
+																		handleRemove={this.handleRemove} />
+										}
+								</>
+							} 
+							/>
+						}
+						
+
+						{
+							this.state.acceptLocationInformation &&
+							<Route path="/map" component={() => 
+								<>
+									<Header 
+										geo={this.state.geo}
+										distance={this.state.distance}
+										address={this.state.address}
+										getGeolocation={this.getGeolocation}
+										getAddressToGeolocation={this.getAddressToGeolocation}
+										getDistanceToUser={this.getDistanceToUser}
+									/>
+									<ItemMapList
+										geo={this.state.geo}
+										items={this.state.items}
+										getDistanceFromLatLonInKm={this.getDistanceFromLatLonInKm}
+										/>
+								</>
+							} 
+							/>
+						}
+						
+
+						<Route path="/" component={() => 
+							<SelectPage 
+								getAcceptLocationInformation={this.getAcceptLocationInformation}
+							/>
 						} 
 						/>
-					}
-
-					<Route path="/masktest0330" component={() => 
-						<SelectPage 
-							getAcceptLocationInformation={this.getAcceptLocationInformation}
-						/>
-					} 
-					/>
-				</Switch>
+					</Switch>
+				</BrowserRouter>
 			</Router>
 		);
 	}

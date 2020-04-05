@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter } from "react-router-dom";
 
 import '../css/SelectPage.css';
 
@@ -25,7 +25,8 @@ class SelectPage extends React.Component {
                         내 주변 마스크는 어디에?
                     </div>
                     <div className="select-condition-button">
-                        <Link id="select-button" className="select-button" onClick={this.acceptLocationCheck} to="/masktest0330/list" >위치정보동의</Link>
+                        <BrowserRouter basename={process.env.PUBLIC_URL} />
+                        <Link id="select-button" className="select-button" onClick={this.acceptLocationCheck} to="/list" >위치정보동의</Link>
                     </div>
                 </div>
             </div>
