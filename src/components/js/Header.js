@@ -81,8 +81,8 @@ const Header = ({ getGeolocation, getAddressToGeolocation, address, distance, ge
                     </div>
                 </div>
                 <div className="user-button-box">
-                    <Link className="btn btn-sm btn-primary toggle-button" to="/list">목록보기</Link>
-                    <Link className="btn btn-sm btn-danger toggle-button" to="/map">지도보기</Link>
+                    <Link className="btn btn-sm btn-primary toggle-button" to="/masktest0330/list">목록보기</Link>
+                    <Link className="btn btn-sm btn-danger toggle-button" to="/masktest0330/map">지도보기</Link>
                     <Button className="user-button btn-sm filter" onClick={modalToggle}>
                         필터&nbsp;
                                 <svg className="bi bi-filter" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -20,19 +20,22 @@ class App extends React.Component {
 			selectStoreType: null,
 			selectedItem: null,
 			selectedItemMap: null,
-			acceptLocationInformation: false
+
+			// acceptLocationInformation: false
+			acceptLocationInformation: true
+			// map이나 list 에서 새로고침을 할 경우.. url은 그대로 /masktest0330/list(또는 map)을 유지하지만..
+			// 해당 값이 false 여서 화면이 제대로 표시되지 않음. 그래서 true 로 변경하는 꼼수 사용.
+			// 앞에서 위치확인 비동의를 할 경우에 경로 이동을 시켜주지 않기때문에..
 		}
 	}
 
 	componentDidMount() {
-		// const acceptCheck = this.getAcceptLocationInformation();
 		if(this.state.acceptLocationInformation) {
 			this.getGeolocation();
 		}
 	}
 
 	getAcceptLocationInformation = (bool) => {
-		console.log(bool);
 		if(bool === true) {
 			this.setState({ acceptLocationInformation: bool }, (state) => {
 				this.getGeolocation();
@@ -42,7 +45,6 @@ class App extends React.Component {
 
 	getAddressToGeolocation = (addressObject) => {
 		if(addressObject !== null) {
-			// console.log(addressObject);
 			this.setState({ address: addressObject.roadAddress });
 			this.handleSuccess(addressObject);
 		}
@@ -50,7 +52,6 @@ class App extends React.Component {
 
 	getDistanceToUser = (distanceObject) => {
 		if(this.state.distance !== distanceObject) {
-			// console.log(distanceObject);
 			let distance = distanceObject *1;
 			this.setState({ distance: distance }, (state) => {
 				console.log(this.state.distance);
@@ -60,7 +61,6 @@ class App extends React.Component {
 	}
 
 	getGeolocation = () => {
-		console.log("getGeolocation 왔다!");
 		if(!navigator.geolocation) {
 			alert("현재위치찾기를 지원하지 않는 브라우저 입니다. 혹은 설정에서 위치정보 접근 권한을 허용해주세요");
 		} else {
@@ -131,7 +131,7 @@ class App extends React.Component {
 				<Switch>
 					{
 						this.state.acceptLocationInformation &&
-						<Route path="/list" component={() => 
+						<Route path="/masktest0330/list" component={() => 
 							<>
 								<Header 
 									geo={this.state.geo}
@@ -159,7 +159,7 @@ class App extends React.Component {
 
 					{
 						this.state.acceptLocationInformation &&
-						<Route path="/map" component={() => 
+						<Route path="/masktest0330/map" component={() => 
 							<>
 								<Header 
 									geo={this.state.geo}
@@ -179,7 +179,7 @@ class App extends React.Component {
 						/>
 					}
 
-					<Route path="/" component={() => 
+					<Route path="/masktest0330" component={() => 
 						<SelectPage 
 							getAcceptLocationInformation={this.getAcceptLocationInformation}
 						/>

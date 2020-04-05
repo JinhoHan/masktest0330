@@ -6,17 +6,14 @@ import '../css/SelectPage.css';
 
 class SelectPage extends React.Component {
 
-    acceptLocationCheck = () => {
-
+    acceptLocationCheck = (e) => {
         const { getAcceptLocationInformation } = this.props;
 
         if(!window.confirm("위치정보확인에 동의하십니까?")) {
-            console.log(111);
-            // document.getElementById("select-button").setAttribute( 'href', '' );
+            e.preventDefault();
             getAcceptLocationInformation(false);
             return;
         }
-        // document.getElementById("select-button").setAttribute( 'href', '/list' );
         getAcceptLocationInformation(true);
     }
 
@@ -28,7 +25,7 @@ class SelectPage extends React.Component {
                         내 주변 마스크는 어디에?
                     </div>
                     <div className="select-condition-button">
-                        <Link id="select-button" className="select-button" onClick={this.acceptLocationCheck} to="/list" >위치정보동의</Link>
+                        <Link id="select-button" className="select-button" onClick={this.acceptLocationCheck} to="/masktest0330/list" >위치정보동의</Link>
                     </div>
                 </div>
             </div>
