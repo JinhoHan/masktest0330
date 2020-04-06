@@ -1,6 +1,6 @@
 /*global kakao*/
 import React, { useState } from 'react';
-import { Link, BrowserRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import '../css/Header.css';
 import '../css/HeaderModal.css';
@@ -14,7 +14,9 @@ const Header = ({ getGeolocation, getAddressToGeolocation, address, distance, ge
 
     // 모달 창 오픈 클로즈 
     const [modal, setModal] = useState(false);
-    const modalToggle = () => setModal(!modal);
+    const modalToggle = () => {
+        setModal(!modal);
+    }
 
     // 거리
     const [ userDistance, setUserDistance ] = useState(distance);
@@ -45,16 +47,6 @@ const Header = ({ getGeolocation, getAddressToGeolocation, address, distance, ge
                     // console.log(status);
                     // 정상적으로 검색이 완료됐으면
                     if (status === kakao.maps.services.Status.OK) {
-
-                        // let coords = new Object();
-                        // coords.latitude = result[0].y;
-                        // coords.longitude = result[0].x;
-
-                        // let position = new Object();
-                        // position.coords = coords;
-                        // position.roadAddress = roadAddress;
-                        // console.log(position);
-
                         let position = {
                             coords : {
                                 latitude : result[0].y,
@@ -81,15 +73,13 @@ const Header = ({ getGeolocation, getAddressToGeolocation, address, distance, ge
                     </div>
                 </div>
                 <div className="user-button-box">
-			        <BrowserRouter basename={process.env.PUBLIC_URL} />
                     <Link className="btn btn-sm btn-primary toggle-button" to="/list">목록보기</Link>
-                    <BrowserRouter basename={process.env.PUBLIC_URL} />
                     <Link className="btn btn-sm btn-danger toggle-button" to="/map">지도보기</Link>
                     <Button className="user-button btn-sm filter" onClick={modalToggle}>
                         필터&nbsp;
-                                <svg className="bi bi-filter" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" d="M2 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clipRule="evenodd" />
-                        </svg>
+                            <svg className="bi bi-filter" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" d="M2 10.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clipRule="evenodd" />
+                            </svg>
                     </Button>
                 </div>
             </Navbar>
@@ -123,54 +113,4 @@ const Header = ({ getGeolocation, getAddressToGeolocation, address, distance, ge
     );
 };
 
-// const handleKaKaoPostService = () => {
-//     console.log("handleKaKaoPostService");
-//     new daum.Postcode({
-//         oncomplete: function(data) {
-//             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-//         }
-//     }).open();
-// }
-
 export default Header;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// =========================================================================================================================
-// class Header extends React.Component {
-
-//     // componentDidMount() {
-//     //     const script = document.createElement("script");
-//     //     script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=a2bf0955b2199f4251ff5881aa9e5d2c&libraries=services";
-//     //     script.async = true;
-//     //     document.body.appendChild(script);
-//     // }
-// =========================================================================================================================

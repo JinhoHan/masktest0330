@@ -1,12 +1,12 @@
 import React from 'react';
 
-import SelectPage from './components/js/SelectPage';
-import ItemList from './components/js/ItemList';
-import ItemMapList from './components/js/ItemMapList';
 import Header from './components/js/Header';
+import ItemList from './components/js/ItemList';
 import SelectedBox from './components/js/SelectedBox';
+import SelectPage from './components/js/SelectPage';
+import ItemMapList from './components/js/ItemMapList';
 
-import { BrowserRouter as Router, Route, Switch, BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 
 
 class App extends React.Component {
@@ -127,8 +127,7 @@ class App extends React.Component {
 	
 	render() {
 		return (
-			<Router>
-				<BrowserRouter basename={process.env.PUBLIC_URL} >
+				<Router basename={process.env.PUBLIC_URL} >
 					<Switch>
 						{
 							this.state.acceptLocationInformation &&
@@ -189,8 +188,7 @@ class App extends React.Component {
 						} 
 						/>
 					</Switch>
-				</BrowserRouter>
-			</Router>
+				</Router>
 		);
 	}
 }
