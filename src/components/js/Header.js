@@ -36,7 +36,7 @@ const Header = ({ getGeolocation, getAddressToGeolocation, address, distance, ge
                 const roadAddress = data.roadAddress; // 길 최종 주소 변수
                 // console.log(data);
 
-                document.getElementById('my-location').innerHTML = roadAddress;
+                // document.getElementById('my-location').innerHTML = roadAddress;
 
                 // 주소-좌표 변환 객체를 생성합니다
                 let geocoder = new kakao.maps.services.Geocoder();
